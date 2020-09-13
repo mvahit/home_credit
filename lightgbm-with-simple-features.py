@@ -429,7 +429,7 @@ def main(debug=False):
 
 if __name__ == "__main__":
     namespace = get_namespace()
-    submission_file_name = "submission_kernel02.csv"
+    submission_file_name = "submissions/base_submission.csv"
     with timer("Full model run"):
         main(debug=namespace.debug)
 
@@ -439,4 +439,5 @@ if __name__ == "__main__":
 # mac: 5073s
 # google 8: 3189s
 # workstation: 1987s
+# submission public score: 0.79186
 
