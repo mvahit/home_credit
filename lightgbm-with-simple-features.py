@@ -368,7 +368,7 @@ def kfold_lightgbm(df, debug=False):
 
         # saving models
         cur_dir = os.getcwd()
-        os.chdir('/Users/mvahit/Documents/GitHub/home_credit/models/dsmlbc2')
+        os.chdir('/Users/mvahit/Documents/GitHub/home_credit/models/reference/')
         model_name = "lightgbm_fold_" + str(n_fold + 1) + "." + "pkl"
         pickle.dump(clf.best_iteration_, open(model_name, 'wb'))
         os.chdir(cur_dir)
@@ -438,7 +438,7 @@ def main(debug=False):
 
 if __name__ == "__main__":
     namespace = get_namespace()
-    submission_file_name = "submissions/base_submission.csv"
+    submission_file_name = "submissions/reference_submission.csv"
     with timer("Full model run"):
         main(debug=namespace.debug)
 
