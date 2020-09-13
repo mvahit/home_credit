@@ -12,8 +12,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import warnings
 import argparse
-warnings.simplefilter(action='ignore', category=FutureWarning)
 import pickle
+import os
+
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
 
 
 @contextmanager
@@ -358,13 +361,7 @@ def kfold_lightgbm(df, debug=False):
         # submission preds. her kat icin test setini tahmin edip tum katların ortalamasini alıyor.
         sub_preds += clf.predict_proba(test_df[feats], num_iteration=clf.best_iteration_)[:, 1] / folds.n_splits
 
-        fold_number = str(n_fold + 1)
 
-        model_name = ["model_name" + fold_number + "." + "pkl"]
-
-        pickle.dump(clf.best_iteration_, open(model_name, 'wb'))
-
-        #pickle.dump(clf.best_iteration_, open('regression_model.pkl', 'wb'))
 
         # feature importance
         fold_importance_df = pd.DataFrame()
@@ -372,6 +369,13 @@ def kfold_lightgbm(df, debug=False):
         fold_importance_df["importance"] = clf.feature_importances_
         fold_importance_df["fold"] = n_fold + 1
         feature_importance_df = pd.concat([feature_importance_df, fold_importance_df], axis=0)
+
+        # saving models
+        cur_dir = os.getcwd()
+        os.chdir('/Users/mvahit/Documents/GitHub/home_credit/models/dsmlbc2')
+        model_name = "lightgbm_fold_" + str(n_fold + 1) + "." + "pkl"
+        pickle.dump(clf.best_iteration_, open(model_name, 'wb'))
+        os.chdir(cur_dir)
 
         print('Fold %2d AUC : %.6f' % (n_fold + 1, roc_auc_score(valid_y, oof_preds[valid_idx])))
 

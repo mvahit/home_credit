@@ -12,8 +12,8 @@ fetch:
 
 compush: commit push
 
-run_debug:
-	python lightgbm-with-simple-features.py
+run_no_debug:
+	python lightgbm-with-simple-features.py --no-debug
 
 run:
-	python lightgbm-with-simple-features.py --no-debug
+	python lightgbm-with-simple-features.py
