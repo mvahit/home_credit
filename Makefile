@@ -10,6 +10,10 @@ pull:
 fetch:
 	git fetch origin master
 
+reset:
+	rm -f .git/index
+	git reset
+
 compush: commit push
 
 run_no_debug:
