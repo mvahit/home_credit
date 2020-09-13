@@ -6,8 +6,8 @@ import gc
 import time
 from contextlib import contextmanager
 from lightgbm import LGBMClassifier
-from sklearn.metrics import roc_auc_score, roc_curve
-from sklearn.model_selection import KFold, StratifiedKFold
+from sklearn.metrics import roc_auc_score
+from sklearn.model_selection import KFold
 import matplotlib.pyplot as plt
 import seaborn as sns
 import warnings
@@ -16,7 +16,6 @@ import pickle
 import os
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
-
 
 
 @contextmanager
@@ -97,7 +96,6 @@ def application_train_test(num_rows=None, nan_as_category=False):
     df['INCOME_PER_PERSON'] = df['AMT_INCOME_TOTAL'] / df['CNT_FAM_MEMBERS']
     df['ANNUITY_INCOME_PERC'] = df['AMT_ANNUITY'] / df['AMT_INCOME_TOTAL']
     df['PAYMENT_RATE'] = df['AMT_ANNUITY'] / df['AMT_CREDIT']
-
 
     del test_df
     gc.collect()
@@ -308,8 +306,6 @@ def credit_card_balance(num_rows=None, nan_as_category=True):
 # Parameters from Tilii kernel: https://www.kaggle.com/tilii7/olivier-lightgbm-parameters-by-bayesian-opt/code
 def kfold_lightgbm(df, debug=False):
 
-
-
     # Divide in training/validation and test data
     train_df = df[df['TARGET'].notnull()]
     test_df = df[df['TARGET'].isnull()]
@@ -436,12 +432,8 @@ def main(debug=False):
         del cc
         gc.collect()
 
-
     with timer("Run LightGBM with kfold"):
         feat_importance = kfold_lightgbm(df, debug=debug)
-
-# TODO workstation'da calisma suresini dene
-# TODO googlo 8'de dene
 
 
 if __name__ == "__main__":
