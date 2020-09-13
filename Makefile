@@ -1,8 +1,11 @@
-gitcommit:
-	git commit -am "asd"
+commit:
+	git commit -am "commit from make file"
 
-gitpush:
+push:
 	git push origin master
 
-gitpull:
+pull:
 	git pull origin master
+
+fetch:
+	git fetch origin master
