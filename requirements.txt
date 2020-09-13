@@ -1,0 +1,24 @@
+certifi==2020.6.20
+cycler==0.10.0
+joblib @ file:///tmp/build/80754af9/joblib_1594236160679/work
+kiwisolver==1.2.0
+lightgbm==2.3.0
+matplotlib==3.3.1
+mkl-fft==1.1.0
+mkl-random==1.1.1
+mkl-service==2.3.0
+numpy==1.19.2
+pandas==1.1.2
+Pillow==7.2.0
+pyparsing==2.4.7
+python-dateutil==2.8.1
+pytz==2020.1
+readme-renderer==26.0
+requests-toolbelt==0.9.1
+rfc3986==1.4.0
+scikit-learn @ file:///opt/concourse/worker/volumes/live/2dacdc11-21e7-44f5-57b4-6b8eb6ceb626/volume/scikit-learn_1598376924598/work
+scipy @ file:///opt/concourse/worker/volumes/live/9698578f-91da-4d5f-6fce-b26b1f42eb5a/volume/scipy_1597686637948/work
+seaborn==0.11.0
+six==1.15.0
+threadpoolctl @ file:///tmp/tmp9twdgx9k/threadpoolctl-2.1.0-py3-none-any.whl
+twine==3.2.0
