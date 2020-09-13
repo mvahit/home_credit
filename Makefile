@@ -11,3 +11,9 @@ fetch:
 	git fetch origin master
 
 compush: commit push
+
+run_debug:
+	python lightgbm-with-simple-features.py
+
+run:
+	python lightgbm-with-simple-features.py --no-debug

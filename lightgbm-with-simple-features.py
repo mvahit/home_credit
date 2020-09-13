@@ -13,6 +13,7 @@ import seaborn as sns
 import warnings
 import argparse
 warnings.simplefilter(action='ignore', category=FutureWarning)
+import pickle
 
 
 @contextmanager
@@ -93,6 +94,8 @@ def application_train_test(num_rows=None, nan_as_category=False):
     df['INCOME_PER_PERSON'] = df['AMT_INCOME_TOTAL'] / df['CNT_FAM_MEMBERS']
     df['ANNUITY_INCOME_PERC'] = df['AMT_ANNUITY'] / df['AMT_INCOME_TOTAL']
     df['PAYMENT_RATE'] = df['AMT_ANNUITY'] / df['AMT_CREDIT']
+
+
     del test_df
     gc.collect()
     return df
@@ -298,7 +301,7 @@ def credit_card_balance(num_rows=None, nan_as_category=True):
     return cc_agg
 
 
-# LightGBM GBDT with KFold or Stratified KFold
+# LightGBM GBDT with KFold
 # Parameters from Tilii kernel: https://www.kaggle.com/tilii7/olivier-lightgbm-parameters-by-bayesian-opt/code
 def kfold_lightgbm(df, debug=False):
 
@@ -355,6 +358,14 @@ def kfold_lightgbm(df, debug=False):
         # submission preds. her kat icin test setini tahmin edip tum katların ortalamasini alıyor.
         sub_preds += clf.predict_proba(test_df[feats], num_iteration=clf.best_iteration_)[:, 1] / folds.n_splits
 
+        fold_number = str(n_fold + 1)
+
+        model_name = ["model_name" + fold_number + "." + "pkl"]
+
+        pickle.dump(clf.best_iteration_, open(model_name, 'wb'))
+
+        #pickle.dump(clf.best_iteration_, open('regression_model.pkl', 'wb'))
+
         # feature importance
         fold_importance_df = pd.DataFrame()
         fold_importance_df["feature"] = feats
@@ -374,6 +385,8 @@ def kfold_lightgbm(df, debug=False):
     if not debug:
         test_df['TARGET'] = sub_preds
         test_df[['SK_ID_CURR', 'TARGET']].to_csv(submission_file_name, index=False)
+
+
 
     display_importances(feature_importance_df)
 
