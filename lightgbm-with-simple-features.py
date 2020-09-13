@@ -437,6 +437,8 @@ def main(debug=False):
         train_df.to_pickle("/Users/mvahit/Documents/GitHub/home_credit/data/final_train_df.pkl")
         test_df.to_pickle("/Users/mvahit/Documents/GitHub/home_credit/data/final_test_df.pkl")
 
+        # df = pd.read_pickle(file_name)
+
         del cc, train_df, test_df
         gc.collect()
 
