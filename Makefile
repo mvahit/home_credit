@@ -9,3 +9,5 @@ pull:
 
 fetch:
 	git fetch origin master
+
+compush: commit push
