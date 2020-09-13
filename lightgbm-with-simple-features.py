@@ -400,10 +400,8 @@ def main(debug=False):
 
     with timer("Process bureau and bureau_balance"):
         bureau = bureau_and_balance(num_rows)
-
         print("Bureau df shape:", bureau.shape)
         df = df.join(bureau, how='left', on='SK_ID_CURR')
-
         del bureau
         gc.collect()
 
@@ -413,23 +411,33 @@ def main(debug=False):
         df = df.join(prev, how='left', on='SK_ID_CURR')
         del prev
         gc.collect()
+
     with timer("Process POS-CASH balance"):
         pos = pos_cash(num_rows)
         print("Pos-cash balance df shape:", pos.shape)
         df = df.join(pos, how='left', on='SK_ID_CURR')
         del pos
         gc.collect()
+
     with timer("Process installments payments"):
         ins = installments_payments(num_rows)
         print("Installments payments df shape:", ins.shape)
         df = df.join(ins, how='left', on='SK_ID_CURR')
         del ins
         gc.collect()
+
     with timer("Process credit card balance"):
         cc = credit_card_balance(num_rows)
         print("Credit card balance df shape:", cc.shape)
         df = df.join(cc, how='left', on='SK_ID_CURR')
-        del cc
+
+        # saving final dataframes
+        train_df = df[df['TARGET'].notnull()]
+        test_df = df[df['TARGET'].isnull()]
+        train_df.to_pickle("/Users/mvahit/Documents/GitHub/home_credit/data/final_train_df.pkl")
+        test_df.to_pickle("/Users/mvahit/Documents/GitHub/home_credit/data/final_test_df.pkl")
+
+        del cc, train_df, test_df
         gc.collect()
 
     with timer("Run LightGBM with kfold"):
