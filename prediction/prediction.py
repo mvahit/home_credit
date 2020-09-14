@@ -1,20 +1,42 @@
 import os
 import pickle
 import pandas as pd
+from sklearn.metrics import roc_auc_score
+import argparse
 
-os.chdir('/Users/mvahit/Documents/GitHub/home_credit/models/reference')
+parser = argparse.ArgumentParser()
+parser.add_argument('--test', dest='test', action='store_false')
+parser.set_defaults(test=True)
+args = parser.parse_args()
 
-# files = os.listdir("/Users/mvahit/Documents/GitHub/home_credit/models/reference")
+final_train = pd.read_pickle("/Users/mvahit/Documents/GitHub/home_credit/data/final_train_df.pkl")
+final_test = pd.read_pickle("/Users/mvahit/Documents/GitHub/home_credit/data/final_test_df.pkl")
 
-model = pickle.load(open('lightgbm_fold_6.pkl', 'rb'))
+feats = [f for f in final_test.columns if f not in ['TARGET', 'SK_ID_CURR', 'SK_ID_BUREAU', 'SK_ID_PREV', 'index',
+                                                    "APP_index", "BURO_index", "PREV_index", "INSTAL_index",
+                                                    "CC_index", "POS_index"]]
 
-df = pd.read_pickle("/Users/mvahit/Documents/GitHub/home_credit/data/final_test_df.pkl")
+if args.test:
+    y_train = final_train["TARGET"]
+    x_train = final_train[feats]
 
-model.predict(df)
+    cur_dir = os.getcwd()
+    os.chdir('/Users/mvahit/Documents/GitHub/home_credit/models/reference/')
+    model = pickle.load(open('lightgbm_final_model.pkl', 'rb'))
+    os.chdir(cur_dir)
 
-# models = []
+    y_pred = model.predict_proba(x_train)[:, 1]
+    print("TRAIN AUC SCORE:", roc_auc_score(y_train, y_pred))
+else:
+    x_test = final_test[feats]
+    cur_dir = os.getcwd()
+    os.chdir('/Users/mvahit/Documents/GitHub/home_credit/models/reference/')
+    model = pickle.load(open('lightgbm_final_model.pkl', 'rb'))
+    os.chdir(cur_dir)
+    y_pred = model.predict_proba(x_test)[:, 1]
+    ids = final_test['SK_ID_CURR']
+    submission = pd.DataFrame({'SK_ID_CURR': ids, 'TARGET': y_pred})
+    os.chdir('/Users/mvahit/Documents/GitHub/home_credit/submissions/')
+    submission.to_csv("sub_from_prediction_py.csv", index=False)
+    print("Submission file has been created in:", "/Users/mvahit/Documents/GitHub/home_credit/submissions/")
 
-# for i in files:
-    #models.append(pickle.load(open(i, 'rb')))
-
-# model = pickle.load(open('regression_model.pkl', 'rb'))
