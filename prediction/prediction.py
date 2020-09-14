@@ -5,8 +5,9 @@ from sklearn.metrics import roc_auc_score
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--test', dest='test', action='store_false')
-parser.set_defaults(test=True)
+parser.add_argument('--train', dest='prediction_type', action='store_true')
+parser.add_argument('--test', dest='prediction_type', action='store_false')
+parser.set_defaults(prediction_type=True)
 args = parser.parse_args()
 
 final_train = pd.read_pickle("/Users/mvahit/Documents/GitHub/home_credit/data/final_train_df.pkl")
@@ -16,7 +17,7 @@ feats = [f for f in final_test.columns if f not in ['TARGET', 'SK_ID_CURR', 'SK_
                                                     "APP_index", "BURO_index", "PREV_index", "INSTAL_index",
                                                     "CC_index", "POS_index"]]
 
-if args.test:
+if args.prediction_type:
     y_train = final_train["TARGET"]
     x_train = final_train[feats]
 

@@ -347,8 +347,8 @@ def kfold_lightgbm(df, debug=False):
     print(feature_importance_df)
 
     # feature importance'ları df olarak kaydet
-    feature_importance_df.to_pickle("/Users/mvahit/Documents/GitHub/home_credit/features/feature_importance_df.pkl")
-    fold_auc_best_df.to_pickle("/Users/mvahit/Documents/GitHub/home_credit/features/fold_auc_best_df.pkl")
+    feature_importance_df.to_pickle("features/feature_importance_df.pkl")
+    fold_auc_best_df.to_pickle("features/fold_auc_best_df.pkl")
 
     # Final Model
     best_iter_1 = int(fold_auc_best_df.sort_values(by="AUC", ascending=False)[:1]["BEST_ITER"].values)
@@ -375,7 +375,7 @@ def kfold_lightgbm(df, debug=False):
             verbose=-1).fit(x_train, y_train)
 
     cur_dir = os.getcwd()
-    os.chdir('/Users/mvahit/Documents/GitHub/home_credit/models/reference/')
+    os.chdir('models/reference/')
     pickle.dump(final_model, open("lightgbm_final_model.pkl", 'wb'))  # model
     os.chdir(cur_dir)
 
@@ -433,8 +433,8 @@ def main(debug=False):
         # saving final dataframes
         train_df = df[df['TARGET'].notnull()]
         test_df = df[df['TARGET'].isnull()]
-        train_df.to_pickle("/Users/mvahit/Documents/GitHub/home_credit/data/final_train_df.pkl")
-        test_df.to_pickle("/Users/mvahit/Documents/GitHub/home_credit/data/final_test_df.pkl")
+        train_df.to_pickle("data/final_train_df.pkl")
+        test_df.to_pickle("data/final_test_df.pkl")
 
         del cc, train_df, test_df
         gc.collect()
