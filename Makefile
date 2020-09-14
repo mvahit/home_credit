@@ -1,3 +1,5 @@
+# GITHUB
+
 commit:
 	git commit -am "commit from make file"
 
@@ -16,8 +18,18 @@ reset:
 
 compush: commit push
 
+
+# CONSOL RUN
+
+
 run_no_debug:
 	python lightgbm-with-simple-features.py --no-debug
 
 run:
 	python lightgbm-with-simple-features.py
+
+
+# MODEL TUNING
+
+tuning:
+	python model_tuning/model_tuning.py

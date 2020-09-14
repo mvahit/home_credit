@@ -1,5 +1,8 @@
 # HOME CREDIT DEFAULT RISK COMPETITION
 
+# TODO model nesnelerini kaydedip okumada problem var.
+# TODO model tuningde şu hata var: AttributeError: 'dict' object has no attribute 'to_pickle'
+
 import numpy as np
 import pandas as pd
 import gc
@@ -358,7 +361,6 @@ def kfold_lightgbm(df, debug=False):
         sub_preds += clf.predict_proba(test_df[feats], num_iteration=clf.best_iteration_)[:, 1] / folds.n_splits
 
 
-
         # feature importance
         fold_importance_df = pd.DataFrame()
         fold_importance_df["feature"] = feats
@@ -370,6 +372,7 @@ def kfold_lightgbm(df, debug=False):
         cur_dir = os.getcwd()
         os.chdir('/Users/mvahit/Documents/GitHub/home_credit/models/reference/')
         model_name = "lightgbm_fold_" + str(n_fold + 1) + "." + "pkl"
+
         pickle.dump(clf.best_iteration_, open(model_name, 'wb'))
         os.chdir(cur_dir)
 
