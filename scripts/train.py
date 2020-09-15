@@ -91,8 +91,8 @@ def kfold_lightgbm(df, debug=False):
     print(feature_importance_df)
 
     # feature importance'ları df olarak kaydet
-    feature_importance_df.to_pickle("features/feature_importance_df.pkl")
-    fold_auc_best_df.to_pickle("features/fold_auc_best_df.pkl")
+    feature_importance_df.to_pickle("outputs/features/feature_importance_df.pkl")
+    fold_auc_best_df.to_pickle("outputs/features/fold_auc_best_df.pkl")
 
     # Final Model
     best_iter_1 = int(fold_auc_best_df.sort_values(by="AUC", ascending=False)[:1]["BEST_ITER"].values)

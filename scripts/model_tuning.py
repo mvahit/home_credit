@@ -1,3 +1,10 @@
+"""Model tuning scripti calistiginda hyperparameters klasörüne iki sonuc uretecek:
+
+    hyperparameters.pkl
+    lightgbm_model.pkl
+
+"""
+
 import os
 import pickle
 from lightgbm import LGBMClassifier
@@ -26,9 +33,9 @@ params = lgbm_cv_model.best_params_
 
 # saving hyperparameters and model
 cur_dir = os.getcwd()
-os.chdir('/model_tuning/')
-pickle.dump(params, open("../model_tuning/hyperparameters.pkl", 'wb'))  # hyperparameters
-pickle.dump(lgbm_cv_model, open("../model_tuning/lightgbm_model.pkl", 'wb'))  # model
+os.chdir('/hyperparameters/')
+pickle.dump(params, open("../outputs/hyperparameters/hyperparameters.pkl", 'wb'))  # hyperparameters
+pickle.dump(lgbm_cv_model, open("../outputs/hyperparameters/lightgbm_model.pkl", 'wb'))  # model
 os.chdir(cur_dir)
 
 print("Best hyperparameters", params)
@@ -38,7 +45,7 @@ print("Best hyperparameters", params)
 
 # del lgbm_cv_model
 # cur_dir = os.getcwd()
-# os.chdir('/Users/mvahit/Documents/GitHub/home_credit/model_tuning/')
+# os.chdir('/Users/mvahit/Documents/GitHub/home_credit/hyperparameters/')
 # model = pickle.load(open('lightgbm_model.pkl', 'rb'))
 # os.chdir(cur_dir)
 # model.predict(X_train.head())
@@ -47,7 +54,7 @@ print("Best hyperparameters", params)
 
 # del params
 # cur_dir = os.getcwd()
-# os.chdir('/Users/mvahit/Documents/GitHub/home_credit/model_tuning/')
+# os.chdir('/Users/mvahit/Documents/GitHub/home_credit/hyperparameters/')
 # params = pickle.load(open('hyperparameters.pkl', 'rb'))
 # final_lgbm = LGBMClassifier(**params).fit(X_train, y_train)
 # final_lgbm.get_params()

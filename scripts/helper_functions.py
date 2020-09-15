@@ -40,7 +40,7 @@ def display_importances(feature_importance_df_):
     sns.barplot(x="importance", y="feature", data=best_features.sort_values(by="importance", ascending=False))
     plt.title('LightGBM Features (avg over folds)')
     plt.tight_layout()
-    plt.savefig('features/lgbm_importances.png')
+    plt.savefig('outputs/features/lgbm_importances.png')
 
 
 # saving models
@@ -51,3 +51,4 @@ def saving_models():
     model_name = "lightgbm_fold_" + str(n_fold + 1) + "." + "pkl"
     pickle.dump(model, open(model_name, 'wb'))  # model
     os.chdir(cur_dir)
+

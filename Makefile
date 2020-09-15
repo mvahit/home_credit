@@ -23,16 +23,16 @@ compush: commit push
 
 
 run_no_debug:
-	python lightgbm-with-simple-features.py --no-debug
+	python main.py --no-debug
 
 run:
-	python lightgbm-with-simple-features.py
+	python main.py
 
 
 # MODEL TUNING
 
 tuning:
-	python model_tuning/model_tuning.py
+	python scripts/model_tuning.py
 
 
 # predict.py fonksiyonunu kullanarak train seti değerleri tahmini ve AUC degeri

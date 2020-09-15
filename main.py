@@ -1,6 +1,4 @@
-# HOME CREDIT DEFAULT RISK COMPETITION
-
-# TODO feature importance bölümünü düzenle
+# HOME CREDIT DEFAULT RISK RUNNER FUNCTION
 
 import gc
 import time
