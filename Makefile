@@ -37,13 +37,13 @@ tuning:
 
 # predict.py fonksiyonunu kullanarak train seti değerleri tahmini ve AUC degeri
 predict:
-	python prediction/prediction.py
+	python scripts/predict.py
 
 # predict.py fonksiyonunu kullanarak test seti değerlerini tahmin etme
 predict_test:
-	python prediction/prediction.py --test
+	python scripts/predict.py --test
 
 # predict.py fonksiyonu ile tahmin edilen sonuçların kaggle'a gönderilmesi
 kaggle_submit_predict:
-	kaggle competitions submit -c home-credit-default-risk -f /submissions/sub_from_prediction_py.csv -m "Message"
+	kaggle competitions submit -c home-credit-default-risk -f /predictions/sub_from_prediction_py.csv -m "Message"
 

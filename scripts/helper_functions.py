@@ -47,7 +47,7 @@ def display_importances(feature_importance_df_):
 def saving_models():
     import os
     cur_dir = os.getcwd()
-    os.chdir('/Users/mvahit/Documents/GitHub/home_credit/models/reference/')
+    os.chdir('/models/reference/')
     model_name = "lightgbm_fold_" + str(n_fold + 1) + "." + "pkl"
     pickle.dump(model, open(model_name, 'wb'))  # model
     os.chdir(cur_dir)

@@ -9,7 +9,7 @@ lgbm = LGBMClassifier()
 lgbm_params = {"learning_rate": [0.01, 0.1],
                "n_estimators": [200, 100]}
 
-df = pd.read_pickle("/Users/mvahit/Documents/GitHub/home_credit/data/final_train_df.pkl")
+df = pd.read_pickle("/data/final_train_df.pkl")
 
 
 y_train = df["TARGET"]
@@ -26,9 +26,9 @@ params = lgbm_cv_model.best_params_
 
 # saving hyperparameters and model
 cur_dir = os.getcwd()
-os.chdir('/Users/mvahit/Documents/GitHub/home_credit/model_tuning/')
-pickle.dump(params, open("hyperparameters.pkl", 'wb'))  # hyperparameters
-pickle.dump(lgbm_cv_model, open("lightgbm_model.pkl", 'wb'))  # model
+os.chdir('/model_tuning/')
+pickle.dump(params, open("../model_tuning/hyperparameters.pkl", 'wb'))  # hyperparameters
+pickle.dump(lgbm_cv_model, open("../model_tuning/lightgbm_model.pkl", 'wb'))  # model
 os.chdir(cur_dir)
 
 print("Best hyperparameters", params)
