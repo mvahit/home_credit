@@ -5,6 +5,8 @@
 
 """
 
+# TODO feature isimlerini modele sokarak bu feature'lar ile tuning
+
 import os
 import pickle
 from lightgbm import LGBMClassifier

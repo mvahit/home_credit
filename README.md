@@ -13,7 +13,7 @@
 5. go!
 
 
-## Bir klasoro ignore
+## Bir klasorü ignore etmek
 
 1. masaüstü uygulamasını aç
 2. ilgili projeyi ac
