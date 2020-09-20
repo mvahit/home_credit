@@ -1,5 +1,16 @@
 # HOME CREDIT DEFAULT RISK RUNNER FUNCTION
 
+# Linux
+# Context Manager
+# Decorator
+# requirements.txt
+# virtual env
+# Makefile
+# git github
+# CLIs
+
+# 10 tane feature flask. Digerleri icin traindf'i import edip rastrgele diger degiskenler alın. Arayüze bu sonucu.
+
 import gc
 import time
 from contextlib import contextmanager

@@ -230,7 +230,7 @@ def application_train():
     conn = pymysql.connect(host='35.228.28.142', port=int(63306), user='group2', passwd='123654', db='home_credit')
     df_app_train = pd.read_sql_query("SELECT * FROM application_train", conn)
     df_app_train = df_app_train[["TARGET", "SK_ID_CURR"]]
-    df_app_train = df_app_train.dropna()
+    # df_app_train = df_app_train.dropna()
     df_app_train.reset_index(drop=True, inplace=True)
     gc.collect()
     return df_app_train
@@ -244,9 +244,9 @@ def bureau_and_balance(nan_as_category=True):
     bureau["AMT_CREDIT_SUM_DEBT"] = bureau["AMT_CREDIT_SUM_DEBT"].fillna(0)
     bureau.fillna(0, inplace=True)
     bb.fillna(0, inplace=True)
-    bureau = bureau.dropna()
+    # bureau = bureau.dropna()
     bureau.reset_index(drop=True, inplace=True)
-    bb = bb.dropna()
+    # bb = bb.dropna()
     bb.reset_index(drop=True, inplace=True)
 
     # add_features
@@ -775,7 +775,7 @@ def modeling(all_data):
     print('Full AUC score %.6f' % roc_auc_score(train_df['TARGET'], oof_preds))  # y_pred_valid
 
     test_df['TARGET'] = sub_preds
-    test_df[['SK_ID_CURR', 'TARGET']].to_csv("dsmlbc1_submission.csv", index=False)
+    test_df[['SK_ID_CURR', 'TARGET']].to_csv("outputs/predictions/atilla_muhammet.csv'", index=False)
 
     display_importances(feature_importance_df)
 
@@ -785,7 +785,6 @@ def modeling(all_data):
 def main():
     with timer("Preprocessing Time"):
         all_data = pre_processing_and_combine()
-        all_data.to_csv('outputs/muhat/export_homecredit.csv', index=False, header=True)
 
     with timer("Modeling"):
         feat_importance = modeling(all_data)
