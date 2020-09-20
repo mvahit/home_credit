@@ -4,9 +4,13 @@ import gc
 import time
 from contextlib import contextmanager
 import warnings
+
+
 from scripts.helper_functions import get_namespace, i_love_ds
+
 from scripts.pre_processing import application_train_test, bureau_and_balance, previous_applications, pos_cash, \
     installments_payments, credit_card_balance
+
 from scripts.train import kfold_lightgbm
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -55,6 +59,8 @@ def main(debug=False):
         del cc
 
         # saving final dataframes
+        # final df uzerinde EDA
+        # model tuning icin veri hazır olur
         train_df = df[df['TARGET'].notnull()]
         test_df = df[df['TARGET'].isnull()]
         train_df.to_pickle("data/final_train_df.pkl")
@@ -77,3 +83,7 @@ if __name__ == "__main__":
 # google 8: 3189s
 # workstation: 1987s
 # submission public score: 0.79186
+
+# 0.79557 mehmet_okan_kasim
+
+
