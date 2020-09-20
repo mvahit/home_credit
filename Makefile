@@ -16,7 +16,10 @@ reset:
 	rm -f .git/index
 	git reset
 
-compush: commit push
+req:
+	pip freeze > requirements.txt
+
+compush: req commit push
 
 
 # CONSOL RUN
