@@ -4,7 +4,7 @@
 #  yeni türetilen değişkenlerin isimlerini ayrı listelerde tut.
 
 all_cols = []  # target burada olmamalı
-num_cols = []
+num_cols = [col for col in df.columns if df[col].dtypes != 'O']
 cat_cols = []
 new_cols = []
 target = []
@@ -24,7 +24,7 @@ features_based_trees = []
 
 # TODO: Önemli not. Yukarıdaki işlemler neticesinde catboost'un sonuçlarına özellikle odaklanıp
 #  kategorik değişkenlerin incelenmesi gerekmektedir.
-#  Çalışmanın başında tutulmulş olan cat_cols listesini kullanarak
+#  Çalışmanın başında tutulmuş olan cat_cols listesini kullanarak
 #  sadece categorik değişkenler için hangi ağacın nasıl bir önem düzeyi verdiğini inceleyiniz
 #  ve diğer algoritmalarca önemsiz catboost tarafından önemli olan değerlendirilen değişkenleri bulunuz
 #  ve aşağıdaki şekilde kaydediniz:

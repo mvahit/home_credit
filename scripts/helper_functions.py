@@ -43,6 +43,16 @@ def display_importances(feature_importance_df_):
     plt.savefig('outputs/features/lgbm_importances.png')
 
 
+# missing values
+
+def missing_values(df):
+
+    cols_with_na = [col for col in df.columns if df[col].isnull().sum() > 0]
+    for col in cols_with_na:
+        print(col, np.round(df[cols_with_na].isnull().mean(), 3), " % missing values")
+
+
+
 # saving models
 def saving_models():
     import os
