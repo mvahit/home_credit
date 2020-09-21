@@ -54,10 +54,8 @@ def get_categoric_columns(df):
 
 def apply_label_encoding(l_df, columns):
     lbe = LabelEncoder()
-
     for col in columns:
         l_df[col] = lbe.fit_transform(l_df[col])
-
     return l_df
 
 
@@ -69,6 +67,16 @@ def apply_one_hot_encoding(l_df):
     return l_df, new_columns
 
 
+def rare_encoding(data, variables, rare_threshold=0.05, n_rare_categories=4):
+    encoder = ce.RareLabelCategoricalEncoder(tol=rare_threshold, n_categories=n_rare_categories, variables=variables,
+                                             replace_with='Rare')
+    # fit the encoder
+    encoder.fit(data)
+    # transform the data
+    data = encoder.transform(data)
+    return data
+
+
 # One-hot encoding for categorical columns with get_dummies
 def one_hot_encoder(df, nan_as_category=True):
     original_columns = list(df.columns)
@@ -78,16 +86,7 @@ def one_hot_encoder(df, nan_as_category=True):
     return df, new_columns
 
 
-def rare_encoding(data, variables, rare_threshold=0.05, n_rare_categories=4):
-    encoder = ce.RareLabelCategoricalEncoder(tol=rare_threshold, n_categories=n_rare_categories, variables=variables,
-                                             replace_with='Rare')
-    # fit the encoder
-    encoder.fit(data)
 
-    # transform the data
-    data = encoder.transform(data)
-
-    return data
 
 
 def reduce_mem_usage(df):
