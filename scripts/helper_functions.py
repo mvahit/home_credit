@@ -62,3 +62,30 @@ def saving_models():
     pickle.dump(model, open(model_name, 'wb'))  # model
     os.chdir(cur_dir)
 
+
+
+ords_dict = {"NAME_EDUCATION_TYPE": {"Secondary / secondary special": 1,
+                                     "Higher education": 2,
+                                     "Incomplete higher": 3,
+                                     "Lower secondary": 4,
+                                     "Academic degree ": 5},
+
+             "HOUSETYPE_MODE": {"block of flats": 1,
+                                "specific housing": 2,
+                                "terraced house": 3}}
+
+for i in ords_dict:
+    print(i)
+
+ords_dict["HOUSETYPE_MODE"]
+df = pd.read_csv('/Users/mvahit/Documents/GitHub/miuul/datasets/application_train.csv')
+df['HOUSETYPE_MODE'] = df['HOUSETYPE_MODE'].map(ords_dict["HOUSETYPE_MODE"])
+df['HOUSETYPE_MODE'].head()
+df['HOUSETYPE_MODE'].value_counts()
+
+
+def label_encoder(dataframe):
+    for col in dataframe.columns:
+        if len(dataframe[col].value_counts()) == 2:
+            dataframe.loc[dataframe[col] == dataframe[col].value_counts().index[0], col] = 1
+            dataframe.loc[dataframe[col] == dataframe[col].value_counts().index[1], col] = 0

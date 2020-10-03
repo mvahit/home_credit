@@ -1,3 +1,14 @@
+# EKSİK DEĞER, AYKIRI DEGER, FEATURE SCALING:
+# DOĞRUSAL MODELLERDE, SVM, YSA, KNN YA DA UZAKLIK TEMELLIK YONTEMLERDE ONEMLIDIR.
+
+# AĞAÇ YÖNTEMLERİNDE ÖNEMİ DÜZEYLERİ ÇOK AZDIR.
+
+# TREE BASED
+# WRAPPER
+# İstatistiksel Yöntemler
+
+
+
 # TODO TREE BASED SELECTION
 
 # TODO: tum değişkenleri, sayısal değişkenleri, kategorik değişkenleri (iki sınıflı ya da çok sınıflı),
