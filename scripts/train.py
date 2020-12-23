@@ -19,16 +19,21 @@ def kfold_lightgbm(df, debug=False):
     train_df = df[df['TARGET'].notnull()]
     test_df = df[df['TARGET'].isnull()]
     print("Starting LightGBM. Train shape: {}, test shape: {}".format(train_df.shape, test_df.shape))
+
+
     del df
     gc.collect()
 
     folds = KFold(n_splits=10, shuffle=True, random_state=1001)
+
     # Create arrays and dataframes to store results
+
     oof_preds = np.zeros(train_df.shape[0])  # predicted valid_y
     sub_preds = np.zeros(test_df.shape[0])  # submission preds
     feature_importance_df = pd.DataFrame()  # feature importance
 
     fold_auc_best_df = pd.DataFrame(columns=["FOLD", "AUC", "BEST_ITER"])  # holding best iter to save model
+
     feats = [f for f in train_df.columns if f not in ['TARGET', 'SK_ID_CURR', 'SK_ID_BUREAU', 'SK_ID_PREV', 'index',
                                                       "APP_index", "BURO_index", "PREV_index", "INSTAL_index",
                                                       "CC_index", "POS_index"]]
@@ -39,6 +44,7 @@ def kfold_lightgbm(df, debug=False):
     for n_fold, (train_idx, valid_idx) in enumerate(folds.split(train_df[feats], train_df['TARGET'])):
         train_x, train_y = train_df[feats].iloc[train_idx], train_df['TARGET'].iloc[train_idx]
         valid_x, valid_y = train_df[feats].iloc[valid_idx], train_df['TARGET'].iloc[valid_idx]
+
         # LightGBM parameters found by Bayesian optimization
         clf = LGBMClassifier(
             n_jobs=-1,
@@ -72,10 +78,14 @@ def kfold_lightgbm(df, debug=False):
         # fold, auc and best iteration
         print('Fold %2d AUC : %.6f' % (n_fold + 1, roc_auc_score(valid_y, oof_preds[valid_idx])))
 
+
+
         # best auc & iteration
         fold_auc_best_df = fold_auc_best_df.append({'FOLD': int(n_fold + 1),
                                                     'AUC': roc_auc_score(valid_y, oof_preds[valid_idx]),
                                                     "BEST_ITER": clf.best_iteration_}, ignore_index=True)
+
+
 
         fold_importance_df = pd.DataFrame()
         fold_importance_df["feature"] = feats

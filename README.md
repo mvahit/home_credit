@@ -1,10 +1,7 @@
 # production_ready_home_credit_default_risk_model
 
 
-
-
-
-## Kaggle kurulum:
+# Kaggle kurulum:
 
 1. pip install kaggle
 2. https://www.kaggle.com/<username>/account adresinden Create API'ye tıkla.
@@ -13,7 +10,7 @@
 5. go!
 
 
-## Bir klasorü ignore etmek
+# Bir klasorü ignore etmek
 
 1. masaüstü uygulamasını aç
 2. ilgili projeyi ac

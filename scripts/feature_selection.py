@@ -8,7 +8,6 @@
 # İstatistiksel Yöntemler
 
 
-
 # TODO TREE BASED SELECTION
 
 # TODO: tum değişkenleri, sayısal değişkenleri, kategorik değişkenleri (iki sınıflı ya da çok sınıflı),

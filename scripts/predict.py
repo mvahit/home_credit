@@ -1,3 +1,5 @@
+"""modele train ya test bağımsız değişken değerlerini sor"""
+
 import os
 import pickle
 import pandas as pd

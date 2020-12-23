@@ -1,4 +1,4 @@
-
+import pandas as pd
 # One-hot encoding for categorical columns with get_dummies
 def one_hot_encoder(df, nan_as_category=True):
     import pandas as pd
