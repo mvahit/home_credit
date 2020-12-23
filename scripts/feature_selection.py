@@ -3,10 +3,12 @@
 
 # AĞAÇ YÖNTEMLERİNDE ÖNEMİ DÜZEYLERİ ÇOK AZDIR.
 
-# TREE BASED
-# WRAPPER
-# İstatistiksel Yöntemler
+# Filter Methods (Statistical methods: korelasyon, ki-kare)
+# Wrapper Methods (backward selection, forward selection, stepwise)
+# Embeded (Tree Based Methods, Ridge, Lasso)
 
+# Tree Based Methods
+# korelasyon, ki-kare
 
 # TODO TREE BASED SELECTION
 
@@ -57,7 +59,8 @@ features_dropped_based_correlation = []
 
 
 # TODO: features_based_trees listesinde olup aynı anda features_dropped_based_correlation listesinde olan feature'lara
-#  odaklanarak inceleme yapınız ve gerekli gördüğünüz değişkenleri features_based_trees listesinden siliniz.
+#  odaklanarak inceleme yapınız ve gerekli gördüğünüz değişkenleri features_based_trees listesinden siliniz ya da
+#  drop listesinden agaç listesine taşıyınız
 
 # TODO: veri setindeki kategorik değişkenler ile bağımlı değişken arasında chi-squared testi uygulayınız
 #  ve bu test sonucuna göre target ile dependency'si bulunan değişkenleri aşağıdaki şekilde saklayınız:
@@ -76,3 +79,4 @@ cat_cols_chi = []
 features_selected = []
 
 # TODO: seçilmiş feature'lar ile model tuning yaparak lightgbm için hiperparametre optimizasyonu yapınız.
+# TODO: yeni hiperparametrelerle final modeli oluşturunuz.
