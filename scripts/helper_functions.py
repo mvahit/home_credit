@@ -62,5 +62,3 @@ def saving_models():
     pickle.dump(model, open(model_name, 'wb'))  # model
     os.chdir(cur_dir)
 
-
-ex[1], col] = 0
