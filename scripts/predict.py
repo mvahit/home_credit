@@ -43,3 +43,5 @@ else:
     submission.to_csv("sub_from_prediction_py.csv", index=False)
     print("Submission file has been created in:", "/Users/mvahit/Documents/GitHub/home_credit/predictions/")
 
+# calistirmak icin
+# python scripts/predict.py --train

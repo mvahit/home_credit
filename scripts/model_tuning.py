@@ -31,6 +31,7 @@ lgbm_cv_model = GridSearchCV(lgbm,
                              n_jobs=-1,
                              verbose=2).fit(X_train, y_train)
 
+dir(lgbm_cv_model)
 params = lgbm_cv_model.best_params_
 
 # saving hyperparameters and model
@@ -46,19 +47,19 @@ print("Best hyperparameters", params)
 # loading and prediction with model
 
 # del lgbm_cv_model
-# cur_dir = os.getcwd()
-# os.chdir('/Users/mvahit/Documents/GitHub/home_credit/hyperparameters/')
-# model = pickle.load(open('lightgbm_model.pkl', 'rb'))
-# os.chdir(cur_dir)
-# model.predict(X_train.head())
+cur_dir = os.getcwd()
+os.chdir('/Users/mvahit/Documents/GitHub/home_credit/outputs/hyperparameters/')
+model = pickle.load(open('lightgbm_model.pkl', 'rb'))
+os.chdir(cur_dir)
+model.predict(X_train.head())
 
 # loading hyperparameters
-
-# del params
-# cur_dir = os.getcwd()
-# os.chdir('/Users/mvahit/Documents/GitHub/home_credit/hyperparameters/')
-# params = pickle.load(open('hyperparameters.pkl', 'rb'))
-# final_lgbm = LGBMClassifier(**params).fit(X_train, y_train)
-# final_lgbm.get_params()
-# final_lgbm.predict(X_train.head())
+del model
+del params
+cur_dir = os.getcwd()
+os.chdir('/Users/mvahit/Documents/GitHub/home_credit/outputs/hyperparameters/')
+params = pickle.load(open('hyperparameters.pkl', 'rb'))
+final_lgbm = LGBMClassifier(**params).fit(X_train, y_train)
+final_lgbm.get_params()
+final_lgbm.predict(X_train.head())
 
