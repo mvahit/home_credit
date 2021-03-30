@@ -22,9 +22,8 @@ req:
 compush: req commit push
 
 
+
 # CONSOL RUN
-
-
 run_no_debug:
 	python main.py --no-debug
 
