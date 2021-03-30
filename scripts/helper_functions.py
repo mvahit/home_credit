@@ -44,21 +44,21 @@ def display_importances(feature_importance_df_):
 
 
 # missing values
+#
+# def missing_values(df):
+#
+#     cols_with_na = [col for col in df.columns if df[col].isnull().sum() > 0]
+#     for col in cols_with_na:
+#         print(col, np.round(df[cols_with_na].isnull().mean(), 3), " % missing values")
 
-def missing_values(df):
-
-    cols_with_na = [col for col in df.columns if df[col].isnull().sum() > 0]
-    for col in cols_with_na:
-        print(col, np.round(df[cols_with_na].isnull().mean(), 3), " % missing values")
 
 
-
-# saving models
-def saving_models():
-    import os
-    cur_dir = os.getcwd()
-    os.chdir('/models/reference/')
-    model_name = "lightgbm_fold_" + str(n_fold + 1) + "." + "pkl"
-    pickle.dump(model, open(model_name, 'wb'))  # model
-    os.chdir(cur_dir)
+# # saving models
+# def saving_models():
+#     import os
+#     cur_dir = os.getcwd()
+#     os.chdir('/models/reference/')
+#     model_name = "lightgbm_fold_" + str(n_fold + 1) + "." + "pkl"
+#     pickle.dump(model, open(model_name, 'wb'))  # model
+#     os.chdir(cur_dir)
 

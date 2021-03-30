@@ -20,6 +20,7 @@ import pandas as pd
 pd.set_option('display.max_columns', None)
 df = pd.read_pickle("/Users/mvahit/Documents/GitHub/home_credit/data/final_train_df.pkl")
 df.head()
+df.shape
 
 [col for col in df.columns if col.startswith("APP")]
 a = df[[col for col in df.columns if col.startswith("APP")]].head()
